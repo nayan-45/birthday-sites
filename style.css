@@ -1,0 +1,255 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    background: url('paper.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Dancing Script', cursive;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+}
+
+/* OVERLAY */
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.15);
+    backdrop-filter: blur(8px);
+    z-index: 0;
+}
+
+/* FLOATING HEARTS */
+.hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hearts span {
+    position: absolute;
+    bottom: -50px;
+    font-size: 25px;
+    animation: floatHearts linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatHearts {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ENVELOPE */
+#envelope {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    text-align: center;
+    z-index: 10;
+}
+
+#envelope img {
+    width: 180px;
+    transition: 0.6s ease;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
+}
+
+#envelope:hover img {
+    transform: scale(1.1) rotate(-3deg);
+}
+
+#envelope p {
+    margin-top: 15px;
+    font-size: 34px;
+    color: #222;
+    text-shadow: none;
+}
+
+/* MESSAGE */
+#message {
+    display: none;
+    position: absolute;
+    top: 8%;
+    width: 68%;
+    left: 16%;
+    font-size: 28px;
+    line-height: 1.8;
+    color: #111;
+    white-space: pre-line;
+    text-align: center;
+    z-index: 100;
+    background: rgba(245, 232, 216, 0.92);
+    padding: 35px;
+    border-radius: 30px;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 0 40px rgba(0,0,0,0.1);
+    animation: fadeIn 1.5s ease;
+}
+
+/* SLIDESHOW */
+#slideshow {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+#slide {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    border-radius: 25px;
+    box-shadow: 0 0 40px rgba(255,255,255,0.6);
+    animation: zoomFade 3s ease-in-out;
+    transition: 1s;
+}
+
+/* FINAL PAGE */
+#finalPage {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('paper.jpg');
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    animation: fadeIn 2s ease;
+    z-index: 50;
+}
+
+.finalText {
+    font-size: 56px;
+    color: #f8ede3;
+    text-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+.heart {
+    color: #ff6b81;
+    font-size: 70px;
+    animation: pulse 1s infinite alternate;
+    cursor: pointer;
+    margin: 20px 0;
+    filter: drop-shadow(0 0 15px rgba(255,107,129,0.6));
+}
+
+.signature {
+    font-size: 34px;
+    margin-top: 20px;
+    color: #f3dfcd;
+    opacity: 0;
+    animation: appear 3s forwards;
+    animation-delay: 2s;
+}
+
+.heartText {
+    font-size: 28px;
+    color: #f3dfcd;
+    margin-top: 25px;
+    font-style: italic;
+    opacity: 0;
+    transition: opacity 1s;
+    width: 70%;
+    line-height: 1.6;
+}
+
+/* ANIMATIONS */
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes appear {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomFade {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+#message{
+    width:90%;
+    left:5%;
+    font-size:22px;
+    padding:20px;
+}
+
+#slide{
+    width:90%;
+    height:60%;
+}
+
+.finalText{
+    font-size:42px;
+}
+
+.signature,
+.heartText{
+    font-size:24px;
+}
+
+#envelope img{
+    width:140px;
+}
+
+}
